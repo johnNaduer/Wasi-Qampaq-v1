@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import Modal from '../components/Modal.vue'
+import axios from 'axios';
 
 const modal = ref(false)
+const data = ref(null)
 
 const openModal = () => {
     modal.value = true
@@ -11,6 +13,10 @@ const openModal = () => {
 const closeModal = () => {
     modal.value = false
 }
+
+axios.get('http://127.0.0.1:5000/').then(res => console.log(res.data))
+
+
 </script>
 
 <template>
