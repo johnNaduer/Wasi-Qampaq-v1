@@ -1,15 +1,38 @@
 #!/usr/bin/python3
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response, jsonify
 from models.state2 import state
 from models.administrador2 import administrador
 from models.propiedad2 import propiedad
 from models.espacio2 import espacio
 import models
 from flask_weasyprint import HTML, render_pdf
+from flask_cors import CORS
 
 #from sqlalchemy.orm import session
 
 app = Flask(__name__)
+app.config.from_object(__name__)
+CORS(app, resources={r'/*': {'origins': '*'}})
+
+@app.route('/')
+def home():
+    return jsonify('hola este es mi sitio')
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    print('Username:', username)
+    print('Password:', password)
+
+    if username == 'admin' and password == 'admin123':
+        return jsonify({'message': 'Inicio de sesión exitoso'})
+    else:
+        return jsonify({'message': 'Credenciales incorrectas'})
+
+
 
 @app.route('/espacios', methods=['GET', 'POST'])
 def crud_espacios():
