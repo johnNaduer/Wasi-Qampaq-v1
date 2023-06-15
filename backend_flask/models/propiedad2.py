@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 from .administrador2 import administrador
 from .base_model2 import basemodel, Base
@@ -16,3 +16,4 @@ class propiedad(basemodel, Base):
     descripcion = Column(String(200), nullable=False)
 
     administrador = relationship("administrador", backref="propiedades")
+

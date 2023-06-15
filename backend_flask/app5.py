@@ -4,6 +4,8 @@ from models.state2 import state
 from models.administrador2 import administrador
 from models.propiedad2 import propiedad
 from models.espacio2 import espacio
+from models.register2 import register
+from models.tenant2 import tenant
 import models
 from flask_weasyprint import HTML, render_pdf
 from flask_cors import CORS
@@ -14,25 +16,50 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-@app.route('/')
-def home():
-    return jsonify('hola este es mi sitio')
 
+@app.route('/add_tenant', methods=['POST'])
+def add_tenant():
+    name = request.json.get('name')
+    last_name = request.json.get('last_name')
+    email = request.json.get('email')
+    phone = request.json.get('phone')
+    espacio_numero = request.json.get('espacio_numero')
+
+    new_tenant = tenant(name=name, last_name=last_name, email=email, phone=phone, espacio_numero=espacio_numero)
+    models.estorage.new(new_tenant)
+
+    return jsonify({'message': 'Tenant added successfully'})
+
+
+@app.route("/register", methods=['POST'])
+def register_user():
+    # Obtener los datos enviados desde Modal.vue
+    name = request.json.get('name')
+    email = request.json.get('email')
+    password = request.json.get('password')
+    password_2 = request.json.get('password_2')
+
+    # Crear una instancia del modelo register
+    new_register = register(name=name, email=email, password=password, password_2=password_2)
+
+    # Guardar el registro en la base de datos
+    models.estorage.new(new_register)
+
+    return jsonify({'message': 'Usuario registrado correctamente'})
 
 @app.route('/login', methods=['POST'])
-def login():
-    username = request.json.get('username')
+def login_user():
+    """ obtener los datos enviados desde LoginView.vue """
+    email = request.json.get('email')
     password = request.json.get('password')
 
-    print('Username:', username)
-    print('Password:', password)
+    """ buscar el usuario en el modelo register por su correo electronico """
 
-    if username == 'admin' and password == 'admin123':
-        return jsonify({'message': 'Inicio de sesión exitoso'})
+    user = models.estorage.get_user_by_email(email)
+    if user is not None and user.password == password:
+        return jsonify({'message': 'Inicio de sesion exitoso'})
     else:
-        return jsonify({'message': 'Credenciales incorrectas'})
-
-
+        return jsonify({'message': 'credenciales incorrectas'})
 
 @app.route('/espacios', methods=['GET', 'POST'])
 def crud_espacios():
@@ -115,23 +142,6 @@ def crud_espacios():
 
             return 'Disponibilidad actualizada correctamente'
 
-        """
-        elif action == 'select_property':
-
-            propiedad_id = int(request.form.get('propiedad_id'))
-
-            if propiedad_id == 0:
-                return 'Error: No se proporcionó el ID de propiedad'
-
-            propiedad2 = models.estorage.get(propiedad, propiedad_id)
-
-            if propiedad2 is None:
-                return f'La propiedad con ID {propiedad_id} no existe'
-
-            espacios = models.estorage.get_espacios_by_propiedad_id(propiedad_id)
-
-            return render_template('espacios_crud.html', propiedad2=propiedad2, espacios=espacios, propiedades=propiedades)
-            """
 
     else:
         espacios_all = models.estorage.all(espacio)
@@ -390,4 +400,4 @@ def index():
     return render_template("index.html", states=states)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5001)

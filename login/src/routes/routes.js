@@ -16,6 +16,12 @@ const routes = [
     name: "recuperar_password",
     component: () => import("../pages/RecuperarPassword.vue"),
   },
+  {
+    path: "/add_tenant",
+    name: "add_tenant",
+    component: () => import("../pages/AddTenantView.vue"),
+  },
+
 ];
 
 const router = createRouter({

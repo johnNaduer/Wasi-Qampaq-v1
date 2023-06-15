@@ -8,9 +8,11 @@ from models.state2 import state
 from models.administrador2 import administrador
 from models.propiedad2 import propiedad
 from models.espacio2 import espacio
+from models.register2 import register
+from models.tenant2 import tenant
 
 classes = {'basemodel':basemodel, 'state':state, 'administrador':administrador,
-           'propiedad':propiedad, 'espacio':espacio}
+           'propiedad':propiedad, 'espacio':espacio, 'register':register, 'tenant':tenant}
 
 class HBNBCcommand(cmd.Cmd):
     prompt = "(hbnb) "

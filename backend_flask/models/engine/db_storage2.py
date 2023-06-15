@@ -5,6 +5,8 @@ from models.state2 import state
 from models.administrador2 import administrador
 from models.propiedad2 import propiedad
 from models.espacio2 import espacio
+from models.register2 import register
+from models.tenant2 import tenant
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
@@ -27,6 +29,10 @@ class DBStorage:
     def get_propiedad_by_nombre(self, nombre):
         """Buscar una propiedad por su nombre"""
         return self.__session.query(propiedad).filter_by(nombre=nombre).first()
+
+    def get_user_by_email(self, email):
+        """Buscar un usuario por su correo electrónico"""
+        return self.__session.query(register).filter_by(email=email).first()
 
     def all(self,cls=None):
         """ consultar todos los datos de la tabla """
