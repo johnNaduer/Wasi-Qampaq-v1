@@ -7,6 +7,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
+    
     <div class="bg-image h-[100vh] ">
     <div class="flex items-center justify-center fixed inset-0">
         <form @submit.prevent="handleSubmit"

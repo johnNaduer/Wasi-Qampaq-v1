@@ -5,13 +5,18 @@ import { RouterLink, RouterView } from 'vue-router';
 
 <template>
   <div>
-    <router-link to="/" class="router-link">Home</router-link>
-    <router-link to="/Listar" class="router-link">Registro</router-link>
+    <router-link to="/" class="router-link-primary">Home</router-link>
+    <router-link to="/inquilino" class="router-link-secondary">Tenants</router-link>
+    <router-link to="/register" class="router-link-secondary">Registro</router-link>
   </div>
   <RouterView />
 </template>
 <style>
-  .router-link {
-  @apply inline-block px-4 py-2 border border-gray-300 rounded text-gray-700;
+  .router-link-primary {
+  @apply inline-block px-4 py-2 bg-violet-500 text-white font-bold rounded;
+  }
+
+  .router-link-secondary {
+  @apply inline-block px-4 py-2 bg-gray-300 text-gray-800 rounded;
   }
 </style>

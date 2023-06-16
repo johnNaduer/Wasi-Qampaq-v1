@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+
 const routes = [
   {
     path: "/",
@@ -22,9 +23,9 @@ const routes = [
     component: () => import("../pages/EditarView.vue"),
   },
   {
-    path: "/listar",
-    name: "listar",
-    component: () => import("../pages/ListarView.vue"),
+    path: "/inquilino",
+    name: "inquilino",
+    component: () => import("../pages/TenantsView.vue"),
   },
 ];
 
