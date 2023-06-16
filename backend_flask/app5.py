@@ -20,12 +20,29 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 @app.route('/add_tenant', methods=['POST'])
 def add_tenant():
     name = request.json.get('name')
-    last_name = request.json.get('last_name')
-    email = request.json.get('email')
+    first_last_name = request.json.get('first_last_name')
+    second_last_name = request.json.get('second_last_name')
+    dni = request.json.get('dni')
     phone = request.json.get('phone')
+    email = request.json.get('email')
+    start_date = request.json.get('start_date')
+    end_date = request.json.get('end_date') 
     espacio_numero = request.json.get('espacio_numero')
+    id_propiedad = request.json.get('id_propiedad')
 
-    new_tenant = tenant(name=name, last_name=last_name, email=email, phone=phone, espacio_numero=espacio_numero)
+    new_tenant = tenant(
+        name=name,
+        first_last_name=first_last_name,
+        second_last_name=second_last_name,
+        dni=dni,
+        phone=phone,
+        email=email,
+        start_date=start_date,
+        end_date=end_date,
+        espacio_numero=espacio_numero,
+        id_propiedad=id_propiedad
+    )
+    
     models.estorage.new(new_tenant)
 
     return jsonify({'message': 'Tenant added successfully'})

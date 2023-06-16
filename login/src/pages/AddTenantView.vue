@@ -53,7 +53,7 @@ export default {
         start_date: this.startDate,
         end_date: this.endDate,
         espacio_numero: this.espacioNumero,
-        id_property: this.idProperty       
+        id_propiedad: this.idProperty       
       };
 
       axios.post(url, data)
