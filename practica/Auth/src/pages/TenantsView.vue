@@ -3,7 +3,7 @@
         <div class="card">
             <h2 class="text-2xl font-bold mb-4 text-center">Tenants</h2>
             <div>
-                <button @click="addData(index)" class="px-4 py-2 bg-green-500 text-white rounded mr-2 hover:bg-green-600 transition-colors duration-200 ease-in-out">Agregar</button>
+                <ModalView  v-show="isModalVisible" />
             </div>
             <div class="card-body">
                 <table id="data" class="w-full bg-white rounded-lg shadow-lg">
@@ -46,7 +46,18 @@
     </div>
 </template>
 <script>
-    
+import ModalView from './ModalView.vue';
+export default {
+    pages: {
+        ModalView
+    },
+    components: { ModalView },
+    data(){
+        return{
+            isModalVisible:false
+        }
+    }
+}
 </script>
 <style scoped>
 
