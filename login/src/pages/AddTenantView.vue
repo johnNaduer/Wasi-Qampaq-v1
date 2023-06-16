@@ -3,10 +3,15 @@
     <h1>Add Tenant</h1>
     <form @submit="addTenant">
       <input type="text" v-model="name" placeholder="Name">
-      <input type="text" v-model="lastName" placeholder="Last Name">
-      <input type="text" v-model="email" placeholder="Email">
+      <input type="text" v-model="firstLastName" placeholder="First Last Name">
+      <input type="text" v-model="secondLastName" placeholder="Second Last Name">
+      <input type="text" v-model="dni" placeholder="Dni">
       <input type="text" v-model="phone" placeholder="Phone">
+      <input type="text" v-model="email" placeholder="Email">
+      <input type="text" v-model="startDate" placeholder="Start Date">
+      <input type="text" v-model="endDate" placeholder="End Date">
       <input type="text" v-model="espacioNumero" placeholder="Espacio Numero">
+      <input type="text" v-model="idProperty" placeholder="Id Property">
       <button type="submit">Add Tenant</button>
     </form>
     <p>{{ message }}</p>
@@ -20,10 +25,15 @@ export default {
   data() {
     return {
       name: '',
-      lastName: '',
-      email: '',
+      firstLastName: '',
+      secondLastName: '',
+      dni: '',
       phone: '',
+      email: '',
+      startDate: '',
+      endDate: '',
       espacioNumero: '',
+      idProperty: '',
       message: ''
     };
   },
@@ -35,10 +45,15 @@ export default {
 
       const data = {
         name: this.name,
-        last_name: this.lastName,
-        email: this.email,
+        first_last_name: this.firstLastName,
+        second_last_name: this.secondLastName,
+        dni: this.dni,
         phone: this.phone,
-        espacio_numero: this.espacioNumero
+        email: this.email,
+        start_date: this.startDate,
+        end_date: this.endDate,
+        espacio_numero: this.espacioNumero,
+        id_property: this.idProperty       
       };
 
       axios.post(url, data)
@@ -51,11 +66,18 @@ export default {
         });
 
       // Restablece los campos del formulario después de agregar el inquilino
-      this.name = '';
-      this.lastName = '';
-      this.email = '';
-      this.phone = '';
-      this.espacioNumero = '';
+      
+        this.name = '';
+        this.firstLastName = '';
+        this.secondLastName = '';
+        this.dni = '';
+        this.phone = '';
+        this.email = '';
+        this.startDate = '';
+        this.endDate = '';
+        this.espacioNumero = '';
+        this.idProperty = '';
+
     }
   }
 };
