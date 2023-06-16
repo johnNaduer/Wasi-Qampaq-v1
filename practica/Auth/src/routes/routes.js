@@ -18,9 +18,9 @@ const routes = [
     component: () => import("../pages/CreateView.vue"),
   },
   {
-    path: "/editar",
+    path: "/modal",
     name: "editar",
-    component: () => import("../pages/EditarView.vue"),
+    component: () => import("../pages/ModalView.vue"),
   },
   {
     path: "/inquilino",
