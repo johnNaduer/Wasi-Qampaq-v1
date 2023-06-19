@@ -56,8 +56,16 @@
         Guardar
       </button>
     </form>
+    <p> {{ message }} </p>
   </div>
 </template>
+
+
+
+
+
+
+
 
 <script>
 import axios from 'axios';
@@ -121,4 +129,3 @@ export default {
   }
 };
 </script>
-

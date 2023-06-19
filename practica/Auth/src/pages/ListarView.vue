@@ -1,45 +1,45 @@
 <template>
-    <div>
+    <div class="p-4">
         <div class="card">
-            <div class="card-header text-center text-3x1">
-                Inquilinos
+            <h2 class="text-2xl font-bold mb-4 text-center">Tenants</h2>
+            <div>
+                <ModalView  v-show="isModalVisible" />
             </div>
-            <button class="my-5 py-1 bg-green-600 rounded cursor-pointer">
-                                    Agregar
-            </button>
             <div class="card-body">
-                <table class="rounded-table">
+                <table id="data" class="w-full bg-white rounded-lg shadow-lg">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Fecha de inicio</th>
-                            <th>Nombre de la propiedad</th>
-                            <th>Número de espacio</th>
-                            <th class="backgraund-color: red">Acciones</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">ID</th> 
+                            <th class="px-6 py-4 bg-blue-500 text-white">Name</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Surname</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Second Surname</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">DNI/Inmigration Card</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Phone</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Email</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Start Date</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Final Date</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Espacios-ID</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Property-ID</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="persona in personas" :key="persona.id">
-                            <td>{{ persona.id }}</td>
-                            <td>{{ persona.nombre }}</td>
-                            <td>{{ persona.apellido }}</td>
-                            <td>{{ persona.correo }}</td>
-                            <td>{{ persona.telefono }}</td>
-                            <td>{{ persona.fecha_inicio }}</td>
-                            <td>{{ persona.nom_propiedad }}</td>
-                            <td>{{ persona.num_espacio }}</td>
-                            <td>
-                                <button type="" class="my-5 py-1 bg-green-600 rounded cursor-pointer">
-                                    Editar
-                                </button>
-                                <button class="my-5 py-1 bg-red-600 rounded cursor-pointer">
-                                    Eliminar
-                                </button>
-                            </td>
+                        <tr>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border">
+                                <div class="flex justify-end">
+                                    <button @click="editData(index)" class="px-4 py-2 bg-green-500 text-white rounded-full mr-2 hover:bg-green-600 transition-colors duration-200 ease-in-out">Editar</button>
+                                    <button @click="deleteData(index)" class="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-200 ease-in-out">Eliminar</button>
+                                </div>
+                            </td>    
                         </tr>
                     </tbody>
                 </table>
@@ -47,37 +47,4 @@
         </div>
     </div>
 </template>
-<script>
-    export default {
-        data() {
-            return {
-                personas: [
-                    { id: 1, nombre: 'Juan', apellido: "Pablo", correo: 'juan@example.com', telefono: "925345678", fecha_inicio: "23/08/2023", nom_propiedad:"propiedad de juan", num_espacio:"123"},
-                    { id: 2, nombre: 'María', apellido: "Antonio", correo: 'maria@example.com',telefono: "925345678", fecha_inicio: "23/08/2023", nom_propiedad:"propiedad de juan", num_espacio:"123"},
-                    { id: 3, nombre: 'Pedro', apellido: "Ramirez", correo: 'pedro@example.com',telefono: "925345678", fecha_inicio: "23/08/2023", nom_propiedad:"propiedad de juan", num_espacio:"123"},
-                ]        
-            };
-        }
-    };
-</script>
-<style scoped>
-    table.rounded-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
-    }
 
-    th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    }
-
-    th {
-    background-color: #28AEC1;
-    }
-
-    button {
-    margin-right: 5px;
-    }
-</style>

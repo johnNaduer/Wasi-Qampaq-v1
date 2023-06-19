@@ -12,6 +12,11 @@ const routes = [
     component: () => import("../pages/RegisterView.vue"),
   },
   {
+    path: "/modal",
+    name: "formulario",
+    component: () => import("../components/ModalView.vue"),
+  },
+  {
     path: "/crear",
     name: "crear",
     component: () => import("../pages/CreateView.vue"),
@@ -22,9 +27,14 @@ const routes = [
     component: () => import("../pages/EditarView.vue"),
   },
   {
-    path: "/listar",
-    name: "listar",
-    component: () => import("../pages/ListarView.vue"),
+    path: "/inquilino",
+    name: "inquilino",
+    component: () => import("../pages/TenantsView.vue"),
+  },
+  {
+    path: "/update",
+    name: "update",
+    component: () => import("../pages/EditTenant.vue"),
   },
 ];
 
