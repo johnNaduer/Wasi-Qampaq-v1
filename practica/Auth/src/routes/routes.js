@@ -13,14 +13,9 @@ const routes = [
     component: () => import("../pages/RegisterView.vue"),
   },
   {
-    path: "/crear",
-    name: "crear",
-    component: () => import("../pages/CreateView.vue"),
-  },
-  {
     path: "/modal",
     name: "editar",
-    component: () => import("../pages/ModalView.vue"),
+    component: () => import("../components/ModalView.vue"),
   },
   {
     path: "/inquilino",

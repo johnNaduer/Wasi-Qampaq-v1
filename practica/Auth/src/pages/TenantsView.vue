@@ -3,8 +3,8 @@
         <div class="card">
             <h2 class="text-2xl font-bold mb-4 text-center">Tenants</h2>
             <div>
-                <ModalView  v-show="isModalVisible" />
-            </div>
+                <ModalView />
+        </div>
             <div class="card-body">
                 <table id="data" class="w-full bg-white rounded-lg shadow-lg">
                     <thead>
@@ -45,20 +45,8 @@
         </div>
     </div>
 </template>
-<script>
-import ModalView from './ModalView.vue';
-export default {
-    pages: {
-        ModalView
-    },
-    components: { ModalView },
-    data(){
-        return{
-            isModalVisible:false
-        }
-    }
-}
-</script>
-<style scoped>
 
-</style>
+<script setup>
+import ModalView from '../components/ModalView.vue';
+</script>
+
