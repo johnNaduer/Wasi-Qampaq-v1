@@ -1,7 +1,7 @@
 <template>
   <div>
     <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
-      Agregar
+      Add
     </button>
     <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
       <div class="relative w-auto my-6 mx-auto max-w-6xl">
@@ -10,7 +10,7 @@
           <!--header-->
           <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
             <h3 class="text-3xl font-semibold">
-              Agregar Inquilino
+              Add Tenant
             </h3>
             <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" v-on:click="toggleModal()">
               <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -54,7 +54,11 @@
                 <label for="finalDate" class="block text-sm font-medium text-gray-700">Final Date</label>
                 <input type="date" id="finalDate" v-model="finalDate" class="w-full bg-gray-100 border border-gray-300 rounded py-2 px-3 focus:outline-none focus:bg-white focus:border-blue-500" />
               </div>
-              <div class="w-full px-4 mb-4">
+              <div class="w-full md:w-1/2 px-4 mb-4">
+                <label for="finalDate" class="block text-sm font-medium text-gray-700">Espace-ID</label>
+                <input type="number" id="finalDate" v-model="finalDate" class="w-full bg-gray-100 border border-gray-300 rounded py-2 px-3 focus:outline-none focus:bg-white focus:border-blue-500" />
+              </div>
+              <div class="w-full md:w-1/2 px-4 mb-4">
                 <label for="propertyId" class="block text-sm font-medium text-gray-700">Property-ID</label>
                 <input type="number" id="propertyId" v-model="propertyId" class="w-full bg-gray-100 border border-gray-300 rounded py-2 px-3 focus:outline-none focus:bg-white focus:border-blue-500" />
               </div>

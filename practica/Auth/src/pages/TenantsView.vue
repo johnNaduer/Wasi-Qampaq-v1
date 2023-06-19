@@ -9,14 +9,16 @@
                 <table id="data" class="w-full bg-white rounded-lg shadow-lg">
                     <thead>
                         <tr>
+                            <th class="px-6 py-4 bg-blue-500 text-white">ID</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Name</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Surname</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Second Surname</th>
-                            <th class="px-6 py-4 bg-blue-500 text-white">DNI/Inmigration Card</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">DNI / Inmigration Card</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Phone</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Email</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Start Date</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Final Date</th>
+                            <th class="px-6 py-4 bg-blue-500 text-white">Espace-ID</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Property-ID</th>
                             <th class="px-6 py-4 bg-blue-500 text-white">Actions</th>
                         </tr>
@@ -32,10 +34,12 @@
                             <td class="px-6 py-4 border"></td>
                             <td class="px-6 py-4 border"></td>
                             <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
+                            <td class="px-6 py-4 border"></td>
                             <td class="px-6 py-4 border">
                                 <div class="flex justify-end">
-                                    <button @click="editData(index)" class="px-4 py-2 bg-green-500 text-white rounded-full mr-2 hover:bg-green-600 transition-colors duration-200 ease-in-out">Editar</button>
-                                    <button @click="deleteData(index)" class="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-200 ease-in-out">Eliminar</button>
+                                    <ModalEditView />
+                                    <ModalDeleteView />
                                 </div>
                             </td>    
                         </tr>
@@ -48,5 +52,7 @@
 
 <script setup>
 import ModalView from '../components/ModalView.vue';
+import ModalDeleteView from '../components/ModalDeleteView.vue';
+import ModalEditView from '../components/ModalEditView.vue';
 </script>
 

@@ -14,8 +14,18 @@ const routes = [
   },
   {
     path: "/modal",
-    name: "editar",
+    name: "formulario",
     component: () => import("../components/ModalView.vue"),
+  },
+  {
+    path: "/modaleliminar",
+    name: "eliminar",
+    component: () => import("../components/ModalDeleteView.vue"),
+  },
+  {
+    path: "/modaleditar",
+    name: "editar",
+    component: () => import("../components/ModalEditView.vue"),
   },
   {
     path: "/inquilino",
