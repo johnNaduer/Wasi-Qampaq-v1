@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-
 const routes = [
   {
     path: "/",
@@ -15,7 +14,7 @@ const routes = [
   {
     path: "/modal",
     name: "formulario",
-    component: () => import("../components/ModalView.vue"),
+    component: () => import("../components/ModalAddView.vue"),
   },
   {
     path: "/modaleliminar",
@@ -28,9 +27,29 @@ const routes = [
     component: () => import("../components/ModalEditView.vue"),
   },
   {
+    path: "/modal_admin_add",
+    name: "add",
+    component: () => import("../components/AdminModalAdd.vue"),
+  },
+  {
+    path: "/modal_admin_delete",
+    name: "delete",
+    component: () => import("../components/AdminModalDelete.vue"),
+  },
+  {
+    path: "/modal_admin_editar",
+    name: "editar",
+    component: () => import("../components/AdminModalEdit.vue"),
+  },
+  {
     path: "/inquilino",
     name: "inquilino",
     component: () => import("../pages/TenantsView.vue"),
+  },
+  {
+    path: "/administrator",
+    name: "administrator",
+    component: () => import("../pages/AdministratorView.vue"),
   },
 ];
 

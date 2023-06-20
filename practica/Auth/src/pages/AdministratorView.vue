@@ -1,9 +1,9 @@
 <template>
     <div class="p-4">
         <div class="card">
-            <h2 class="text-2xl font-bold mb-4 text-center">Tenants</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center">Administrator</h2>
             <div>
-                <ModalView />
+                <AdminModalAdd />
         </div>
             <div class="card-body">
                 <table id="data" class="w-full bg-white rounded-lg shadow-lg">
@@ -38,8 +38,8 @@
                             <td class="px-6 py-4 border"></td>
                             <td class="px-6 py-4 border">
                                 <div class="flex justify-end">
-                                    <ModalEditView />
-                                    <ModalDeleteView />
+                                    <AdminModalEdit />
+                                    <AdminModalDelete />
                                 </div>
                             </td>    
                         </tr>
@@ -51,8 +51,7 @@
 </template>
 
 <script setup>
-import ModalView from '../components/ModalAddView.vue';
-import ModalDeleteView from '../components/ModalDeleteView.vue';
-import ModalEditView from '../components/ModalEditView.vue';
+import AdminModalAdd from '../components/AdminModalAdd.vue';
+import AdminModalDelete from '../components/AdminModalDelete.vue';
+import AdminModalEdit from '../components/AdminModalEdit.vue';
 </script>
-
