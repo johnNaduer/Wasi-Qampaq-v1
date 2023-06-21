@@ -45,7 +45,7 @@
               <td>
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-warning btn-sm">Update</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-danger btn-sm" @click="handleDeleteTenant(tenant)">Delete</button>
 
                 </div>
               </td>
@@ -214,6 +214,15 @@ export default {
   methods: {
     addTenant(addtenant) {
     const path = 'http://localhost:5001/add_tenant';
+    axios.post(path, addtenant)
+        .then(() =>{
+          this.fetchTenants();
+        })
+         .catch((error) => {
+
+          console.log(error);
+          this.fetchTenants();
+        });
     },
      fetchTenants() {
       const path = 'http://localhost:5001/tenants'; // Reemplaza con la ruta correcta de tu API , solicita get a la api
@@ -241,7 +250,44 @@ export default {
       id_propiedad: this.addTenantForm.idProperty, 
       };
 
+     this.addTenant(addtenant);
+     this.initForm();
     },
+    
+    initForm() {
+      this.addTenantForm.name = '';
+      this.addTenantForm.firstLastName = '';
+      this.addTenantForm.secondLastName = '';
+      this.addTenantForm.dni = ''; 
+      this.addTenantForm.phone = ''; 
+      this.addTenantForm.email = ''; 
+      this.addTenantForm.startDate = '';
+      this.addTenantForm.endDate = '';
+      this.addTenantForm.espacioNumero = '';
+      this.addTenantForm.idProperty = '';
+
+    },
+    
+    handleAddReset() {
+      this.initForm();
+    },
+
+    handleDeleteTenant(tenant) {
+      this.removeTenant(tenant.id);
+    },
+
+    removeTenant(tenantID) {
+      const path = `http://localhost:5001/tenants/${tenantID}`;
+      axios.delete(path)
+       .then(() => {
+         this.fetchTenants();
+       })
+        .catch((error) => {
+          console.error(error);
+         this.fetchTenants(); 
+        });
+    },
+
     toggleAddBookModal() {
       const body = document.querySelector('body');
       this.activeAddBookModal = !this.activeAddBookModal;
