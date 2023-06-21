@@ -36,6 +36,16 @@ const routes = [
     name: "update",
     component: () => import("../pages/EditTenant.vue"),
   },
+  {
+    path: "/modaleliminar",
+    name: "eliminar",
+    component: () => import("../components/ModalDeleteView.vue"),
+  },
+  {
+    path: "/tenant",
+    name: "tenant",
+    component: () => import("../components/Tenants.vue"),
+  },
 ];
 
 const router = createRouter({
