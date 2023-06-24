@@ -47,11 +47,15 @@
                   <button type="button" class="btn btn-warning btn-sm">Update</button>
                   <button type="button" class="btn btn-danger btn-sm" @click="handleDeleteTenant(tenant)">Delete</button>
 
+                  <input type="file" @change="handleFileUpload(index, $event)">
+                  <button type="button" class="btn btn-primary btn-sm" @click="handleViewFile(index)">View</button>
+
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
+
       </div>
     </div>
 
@@ -212,6 +216,18 @@ export default {
     };
   },
   methods: {
+    handleFileUpload(index, event) {
+      const file = event.target.files[0];
+      this.uploadedFiles[index] = file;
+    },
+    handleViewFile(index) {
+      const file = this.uploadedFiles[index];
+      if (file) {
+        // Suponiendo que deseas abrir el archivo en una nueva pestaña del navegador
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL, '_blank');
+      }
+    },
     addTenant(addtenant) {
     const path = 'http://localhost:5001/add_tenant';
     axios.post(path, addtenant)
@@ -298,6 +314,7 @@ export default {
       }
     },
   },
+
   created() {
     this.fetchTenants();
   },
