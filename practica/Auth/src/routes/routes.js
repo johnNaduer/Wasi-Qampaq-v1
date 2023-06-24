@@ -27,29 +27,19 @@ const routes = [
     component: () => import("../components/ModalEditView.vue"),
   },
   {
-    path: "/modal_admin_add",
-    name: "add",
-    component: () => import("../components/AdminModalAdd.vue"),
-  },
-  {
-    path: "/modal_admin_delete",
-    name: "delete",
-    component: () => import("../components/AdminModalDelete.vue"),
-  },
-  {
-    path: "/modal_admin_editar",
-    name: "editar",
-    component: () => import("../components/AdminModalEdit.vue"),
-  },
-  {
-    path: "/inquilino",
+    path: "/tenants",
     name: "inquilino",
     component: () => import("../pages/TenantsView.vue"),
   },
   {
-    path: "/administrator",
-    name: "administrator",
-    component: () => import("../pages/AdministratorView.vue"),
+    path: "/tenant",
+    name: "tenant",
+    component: () => import("../components/Tenants.vue"),
+  },
+  {
+    path: "/practica",
+    name: "practica",
+    component: () => import("../components/Práctica.vue"),
   },
 ];
 

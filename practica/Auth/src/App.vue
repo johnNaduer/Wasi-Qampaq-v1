@@ -6,12 +6,11 @@ import { RouterLink, RouterView } from 'vue-router';
 <template>
   <div>
     <router-link to="/" class="router-link-primary">Home</router-link>
-    <router-link to="/inquilino" class="router-link-secondary">Tenants</router-link>
-    <router-link to="/register" class="router-link-secondary">Registro</router-link>
+    <router-link to="/tenant" class="router-link-secondary">Tenants</router-link>
   </div>
   <RouterView />
 </template>
-<style>
+<style scoped>
   .router-link-primary {
   @apply inline-block px-4 py-2 bg-violet-500 text-white font-bold rounded;
   }
