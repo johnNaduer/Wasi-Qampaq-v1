@@ -46,9 +46,7 @@
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-warning btn-sm">Update</button>
                   <button type="button" class="btn btn-danger btn-sm" @click="handleDeleteTenant(tenant)">Delete</button>
-                  <button class="btn btn-primary" @click="descargar">
-                  <i class="bi bi-box-arrow-down"></i> Descargar
-                  </button>
+                  <button type="button" class="btn btn-primary btn-sm" @click="printTenant(tenant)">Imprimir</button>
                 </div>
               </td>
             </tr>
@@ -299,22 +297,45 @@ export default {
         body.classList.remove('modal-open');
       }
     },
-    generatePDF() {
-        const doc = new jsPDF();
-        
-        // Agregar imagen de fondo
-        const imgUrl = 'https://png.pngtree.com/thumb_back/fw800/background/20220218/pngtree-paper-document-background-image_959676.jpg';
-        doc.addImage(imgUrl, 'JPEG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
-  
-        doc.setFontSize(18);
-        doc.text('Información del Inquilino', 50, 30);
-  
-        // Agregar algo en la parte final del documento
-        doc.setFontSize(12);
-        doc.text('Texto final del documento', 20, doc.internal.pageSize.getHeight() - 20);
+    printTenant(tenant) {
+    // Crear un objeto de datos para generar el PDF de un solo inquilino
+    const tenantData = {
+      name: tenant.name,
+      firstLastName: tenant.firstLastName,
+      secondLastName: tenant.secondLastName,
+      dni: tenant.dni,
+      phone: tenant.phone,
+      email: tenant.email,
+      startDate: tenant.startDate,
+      endDate: tenant.endDate,
+      espacioNumero: tenant.espacioNumero,
+      idProperty: tenant.idProperty,
+    };
 
-        doc.save('formulario.pdf');
-      }
+    // Ocultar el botón de impresión para que no aparezca en el PDF
+    const printButton = event.target;
+    printButton.style.display = 'none';
+
+    // Generar el PDF
+    const doc = new jsPDF();
+    doc.text(`Name: ${tenantData.name}`, 10, 10);
+    doc.text(`First Last Name: ${tenantData.firstLastName}`, 10, 20);
+    doc.text(`Second Last Name: ${tenantData.secondLastName}`, 10, 30);
+    doc.text(`Dni / Inmigration Card: ${tenantData.dni}`, 10, 40);
+    doc.text(`Phone: ${tenantData.phone}`, 10, 50);
+    doc.text(`Email: ${tenantData.email}`, 10, 60);
+    doc.text(`Start Date: ${tenantData.startDate}`, 10, 70);
+    doc.text(`End Date: ${tenantData.endDate}`, 10, 80);
+    doc.text(`Space Number: ${tenantData.espacioNumero}`, 10, 90);
+    doc.text(`ID Property: ${tenantData.idProperty}`, 10, 100);
+    
+    // Imprimir el PDF
+    doc.autoPrint();
+    window.open(doc.output('bloburl'), '_blank');
+
+    // Mostrar nuevamente el botón de impresión después de imprimir
+    printButton.style.display = 'inline-block';
+  },
   },
   created() {
     this.fetchTenants();
