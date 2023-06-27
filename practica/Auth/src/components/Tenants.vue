@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-10">
+        <br><br>
         <h1>Tenant</h1>
         <hr><br><br>
         <button
@@ -30,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(tenant, index) in tenants" :key="tenant.id">
+              <tr v-for="(tenant, index) in tenants.slice(startIndex, startIndex + itemsPerPage)" :key="tenant.id">
               <td>{{ tenant.id }}</td>
               <td>{{ tenant.name }}</td>
               <td>{{ tenant.first_last_name }}</td>
@@ -46,15 +47,39 @@
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-warning btn-sm">Update</button>
                   <button type="button" class="btn btn-danger btn-sm" @click="handleDeleteTenant(tenant)">Delete</button>
-
-                  <input type="file" @change="handleFileUpload(index, $event)">
-                  <button type="button" class="btn btn-primary btn-sm" @click="handleViewFile(index)">View</button>
-
+                  <!-- actualizar input -->
+                  <input type="file" @change="uploadFile($event, tenant.id)" accept=".pdf" />
+                  <!-- actualizar boton -->
+                  <button @click="viewFile(tenant.id)">View</button>
+                  <!--  --> 
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
+         <nav>
+          <ul class="pagination justify-content-center">
+            <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+              <a class="page-link" href="#" aria-label="Previous" @click="previousPage">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item" v-for="page in totalPages" :key="page" :class="{ 'active': currentPage === page }">
+              <a class="page-link" href="#" @click="goToPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+              <a class="page-link" href="#" aria-label="Next" @click="nextPage">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+         </nav>
+        
+        <!--
+        <tr v-for="file in files" :key="file.id">
+        <button @click="viewFile(file.id)">View</button>
+        </tr>
+        -->
 
       </div>
     </div>
@@ -210,24 +235,25 @@ export default {
       endDate: '',
       espacioNumero: '',
       idProperty: '',
-      },
-    
+      },    
       tenants: [],
+      files: [],
+      currentPage: 1,
+      itemsPerPage: 3,
     };
   },
+  computed: {
+    startIndex() {
+      return (this.currentPage - 1) * this.itemsPerPage;
+    },
+    paginatedTenants() {
+      return this.tenants.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+    },
+    totalPages() {
+      return Math.ceil(this.tenants.length / this.itemsPerPage);
+    },
+  },
   methods: {
-    handleFileUpload(index, event) {
-      const file = event.target.files[0];
-      this.uploadedFiles[index] = file;
-    },
-    handleViewFile(index) {
-      const file = this.uploadedFiles[index];
-      if (file) {
-        // Suponiendo que deseas abrir el archivo en una nueva pestaña del navegador
-        const fileURL = URL.createObjectURL(file);
-        window.open(fileURL, '_blank');
-      }
-    },
     addTenant(addtenant) {
     const path = 'http://localhost:5001/add_tenant';
     axios.post(path, addtenant)
@@ -268,6 +294,7 @@ export default {
 
      this.addTenant(addtenant);
      this.initForm();
+     this.paginateTenants();
     },
     
     initForm() {
@@ -313,10 +340,68 @@ export default {
         body.classList.remove('modal-open');
       }
     },
+
+    uploadFile(event, tenantId) {
+      const file = event.target.files[0];
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('tenantId',tenantId); // agregar el id del inquilino
+
+      const path = 'http://localhost:5001/upload';
+
+      axios
+        .post(path, formData)
+        .then((res) => {
+          console.log(res.data);
+          
+          this.getFiles(); // Llamar al método para obtener los archivos después de cargar uno nuevo
+          
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+
+    getFiles() {
+      const path = 'http://localhost:5001/files'; // Ruta de la API para obtener los archivos
+
+      axios
+        .get(path)
+        .then((res) => {
+          this.files = res.data.files; // Actualizar el array de archivos con los datos obtenidos
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    viewFile(id) {
+      // Redirigir a una nueva página que muestra el archivo PDF
+      window.open(`http://localhost:5001/files/${id}`, '_blank');
+    },
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+
+    goToPage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+      }
+    },
+  
   },
 
   created() {
     this.fetchTenants();
+    this.getFiles();
   },
 };
 </script>
