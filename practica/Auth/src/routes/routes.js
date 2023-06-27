@@ -41,6 +41,12 @@ const routes = [
     name: "practica",
     component: () => import("../components/Práctica.vue"),
   },
+  {
+    path: "/tabla",
+    name: "tabla",
+    component: () => import("../pages/Tabla.vue"),
+  },
+
 ];
 
 const router = createRouter({

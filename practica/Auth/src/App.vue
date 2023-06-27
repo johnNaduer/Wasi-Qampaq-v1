@@ -70,9 +70,9 @@ onMounted(() => {
                             <div class="sb-nav-link-icon"><i class=""></i></div>
                             Tenants2
                             </a>
-                            <a class="nav-link" href="/propiedades">
+                            <a class="nav-link" href="/tabla">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                            Propiedades
+                            Tabla de Practica
                             </a>
 
                             <a class="nav-link" href="/espacios">

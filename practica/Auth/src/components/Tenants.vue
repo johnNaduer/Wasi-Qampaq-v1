@@ -30,7 +30,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(tenant, index) in tenants" :key="tenant.id">
+            <tr v-for="(tenant, index) in tenants.slice(startIndex, startIndex + itemsPerPage)" :key="tenant.id">
               <td>{{ tenant.id }}</td>
               <td>{{ tenant.name }}</td>
               <td>{{ tenant.first_last_name }}</td>
@@ -52,6 +52,23 @@
             </tr>
           </tbody>
         </table>
+        <nav>
+          <ul class="pagination justify-content-center">
+            <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+              <a class="page-link" href="#" aria-label="Previous" @click="previousPage">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item" v-for="page in totalPages" :key="page" :class="{ 'active': currentPage === page }">
+              <a class="page-link" href="#" @click="goToPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+              <a class="page-link" href="#" aria-label="Next" @click="nextPage">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
 
@@ -209,7 +226,20 @@ export default {
       },
     
       tenants: [],
+      currentPage: 1,
+      itemsPerPage: 6,
     };
+  },
+  computed: {
+    startIndex() {
+      return (this.currentPage - 1) * this.itemsPerPage;
+    },
+    paginatedTenants() {
+      return this.tenants.slice(this.startIndex, this.startIndex + this.itemsPerPage);
+    },
+    totalPages() {
+      return Math.ceil(this.tenants.length / this.itemsPerPage);
+    },
   },
   methods: {
     addTenant(addtenant) {
@@ -252,6 +282,7 @@ export default {
 
      this.addTenant(addtenant);
      this.initForm();
+     this.paginateTenants();
     },
     
     initForm() {
@@ -297,6 +328,7 @@ export default {
         body.classList.remove('modal-open');
       }
     },
+    
     printTenant(tenant) {
     // Crear un objeto de datos para generar el PDF de un solo inquilino
     const tenantData = {
