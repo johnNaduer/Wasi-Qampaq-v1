@@ -1,6 +1,8 @@
-# **WASI QAMPAQ**
+# <p align="center"><strong>WASI QAMPAQ</strong></p>
 
-![logo](https://cdn.freelogodesign.org/files/87a2497aae4f46ea8f471b6f29fe59fd/thumb/logo_200x200.png?v=638236687550000000)
+<p align="center">
+  <img src="https://cdn.freelogodesign.org/files/87a2497aae4f46ea8f471b6f29fe59fd/thumb/logo_200x200.png?v=638236687550000000" alt="logo">
+</p>
 
 # Introducción
 
