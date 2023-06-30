@@ -30,10 +30,10 @@ En ese sentido, Wasi Qampaq surge de la necesidad de encontrar una oferta inmobi
 
 Somos un grupo de aficionados y amateurs de la programación, los cuales se unieron para dar vida ha este proyecto MVP.
 
-* **John Espino** [@JohnNaduer](https://github.com/johnNaduer) - Ingeniero Industrial y apasionado por la programación web del lado del servidor(Backend).
-* **Aaron Jauregui** [@aaronJau21](https://github.com/aaronJau21) - Diseñador y programador web, apasionado por la programación web del lado del cliente(Frontend).
-* **Piero Ramirez** [@piero2023]( https://github.com/piero2023) - Autodidacta y apasionado por la programación web del lado del cliente(Frontend).
-* **Alex Nuñez** [@AlExito745](https://github.com/AlExito745) - Ingenierio Ambiental, apasionado por la programación con orientación hacia el GIS Developer y Geospatial Data Science.
+* **John Espino** [@JohnNaduer](https://github.com/johnNaduer) - Ingeniero Industrial y apasionado por la programación web del lado del servidor(Backend). Es nuestro Full Stack Software Engineer del proyecto.
+* **Aaron Jauregui** [@aaronJau21](https://github.com/aaronJau21) - Diseñador y programador web, apasionado por la programación web del lado del cliente(Frontend). Es nuestro Full Stack Software Engineer del proyecto.
+* **Piero Ramirez** [@piero2023]( https://github.com/piero2023) - Autodidacta y apasionado por la programación web del lado del cliente. Es nuestro soporte Frontend del proyecto.
+* **Alex Nuñez** [@AlExito745](https://github.com/AlExito745) - Ingenierio Ambiental, apasionado por la programación con orientación hacia el GIS Developer y Geospatial Data Science. Es nuestro Document manger y el de la chispa suprema.
 
 ## Construido con
 
