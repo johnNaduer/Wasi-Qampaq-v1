@@ -1,4 +1,5 @@
 <template>
+    
     <div class="p-4">
         <div class="card">
             <h2 class="text-2xl font-bold mb-4 text-center">Tenants</h2>

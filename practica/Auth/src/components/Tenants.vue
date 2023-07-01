@@ -206,6 +206,8 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2';
+
 
 export default {
   data() {
@@ -255,7 +257,7 @@ export default {
         });
     },
      fetchTenants() {
-      const path = 'http://localhost:5001/tenants'; // Reemplaza con la ruta correcta de tu API , solicita get a la api
+      const path = 'http://localhost:5001/tenants'; 
       axios.get(path)
         .then((response) => {
           this.tenants = response.data;
@@ -283,6 +285,13 @@ export default {
      this.addTenant(addtenant);
      this.initForm();
      this.paginateTenants();
+     Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      });
     },
     
     initForm() {
@@ -326,6 +335,23 @@ export default {
         body.classList.add('modal-open');
       } else {
         body.classList.remove('modal-open');
+      }
+    },
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+
+    goToPage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
       }
     },
     

@@ -58,13 +58,21 @@ onMounted(() => {
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="/">
+                            <!--<a class="nav-link" href="/">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Registro
-                            </a>
-                            <a class="nav-link" href="/tenant">
+                            </a>-->
+                            <a class="nav-link" href="/">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
                               Tenants
+                            </a>
+                            <a class="nav-link" href="/login">
+                            <div class="sb-nav-link-icon"><i class=""></i></div>
+                              Decoracion
+                            </a>
+                            <a class="nav-link" href="/register">
+                            <div class="sb-nav-link-icon"><i class=""></i></div>
+                              grafico
                             </a>
                             <a class="nav-link" href="/tenants">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
@@ -75,9 +83,9 @@ onMounted(() => {
                             Tabla de Practica
                             </a>
 
-                            <a class="nav-link" href="/espacios">
+                            <a class="nav-link" href="/boton">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                            Vivienda
+                            Boton
                             </a>
 
                         </div>
@@ -96,10 +104,13 @@ onMounted(() => {
 
                   <div class="container-fluid px-4">
                     <div>
-    <router-link to="/" class="d-none">Home</router-link>
-    <router-link to="/inquilino" class="d-none">Tenants</router-link>
+    <!--<router-link to="/" class="d-none">Home</router-link>-->
+    <router-link to="/" class="d-none">Tenants</router-link>
+    <router-link to="/login" class="d-none">Tenants</router-link>
+    <router-link to="/register" class="d-none">grafico</router-link>
     <router-link to="/register" class="d-none">Registro</router-link>
     <router-link to="/tenants" class="d-none">Tenants</router-link>
+    <router-link to="/boton" class="d-none">Tenants</router-link>
   </div>
   <RouterView />
 

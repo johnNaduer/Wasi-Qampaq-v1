@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: "/login",
+    name: "login",
     component: () => import("../pages/HomeView.vue"),
   },
   {
@@ -32,7 +32,7 @@ const routes = [
     component: () => import("../pages/TenantsView.vue"),
   },
   {
-    path: "/tenant",
+    path: "/",
     name: "tenant",
     component: () => import("../components/Tenants.vue"),
   },
@@ -46,7 +46,11 @@ const routes = [
     name: "tabla",
     component: () => import("../pages/Tabla.vue"),
   },
-
+  {
+    path: "/boton",
+    name: "boton",
+    component: () => import("../components/Boton.vue"),
+  },
 ];
 
 const router = createRouter({
