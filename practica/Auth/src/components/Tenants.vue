@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-sm-10">
+      <div class="col-md-10">
         <h1>Tenant</h1>
-        <hr><br><br>
+        <hr class="my-4">
         <button
           type="button"
           class="btn btn-success btn-sm"
@@ -11,8 +11,8 @@
           Add Tenant
         </button>
         <br><br>
-        <table class="table table-hover">
-          <thead>
+        <table class="table table-hover table-striped">
+          <thead class="thead-light">
             <tr>
             <th class="col">ID</th>
             <th class="col">Name</th>

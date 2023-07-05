@@ -1,8 +1,98 @@
+<style>
+body {
+
+    background-color: rgb(35, 21, 112);
+    }
+.custom-table {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.custom-table thead {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 16px;
+  text-align: center;
+}
+
+.custom-table tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+.custom-table .btn-group button {
+  margin-right: 5px;
+}
+
+.custom-table .btn-group button:last-child {
+  margin-right: 0;
+}
+
+.custom-table .btn {
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.custom-table .btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.custom-table .btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+  color: #212529;
+}
+
+.custom-table .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.custom-table .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: #fff;
+}
+
+.custom-table .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.custom-table .btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  color: #fff;
+}
+.rounded-table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+</style>
 <template>
   <div class="container">
     <div class="row">
       <div class="col-sm-10">
-        <h1>Tenant</h1>
+        <h1 data-shadow='Tenant' class="text-white">Tenant</h1>
         <hr><br><br>
         <button
           type="button"
@@ -11,46 +101,46 @@
           Add Tenant
         </button>
         <br><br>
-        <table class="table table-hover table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Second Surname</th>
-              <th>DNI / Inmigration Card</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Start Date</th>
-              <th>Final Date</th>
-              <th>Espace-ID</th>
-              <th>Property-ID</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(tenant, index) in tenants.slice(startIndex, startIndex + itemsPerPage)" :key="tenant.id">
-              <td>{{ tenant.id }}</td>
-              <td>{{ tenant.name }}</td>
-              <td>{{ tenant.first_last_name }}</td>
-              <td>{{ tenant.second_last_name }}</td>
-              <td>{{ tenant.dni }}</td>
-              <td>{{ tenant.phone }}</td>
-              <td>{{ tenant.email }}</td>
-              <td>{{ tenant.start_date }}</td>
-              <td>{{ tenant.end_date }}</td>
-              <td>{{ tenant.espacio_numero }}</td>
-              <td>{{ tenant.id_propiedad }}</td>
-              <td>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-warning btn-sm">Update</button>
-                  <button type="button" class="btn btn-danger btn-sm" @click="handleDeleteTenant(tenant)">Delete</button>
-                  <button type="button" class="btn btn-primary btn-sm" @click="printTenant(tenant)">Imprimir</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <table class="table table-hover custom-table rounded-table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Second Surname</th>
+        <th scope="col">DNI / Inmigration Card</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Final Date</th>
+        <th scope="col">Espace-ID</th>
+        <th scope="col">Property-ID</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(tenant, index) in tenants.slice(startIndex, startIndex + itemsPerPage)" :key="tenant.id">
+        <td>{{ tenant.id }}</td>
+        <td>{{ tenant.name }}</td>
+        <td>{{ tenant.first_last_name }}</td>
+        <td>{{ tenant.second_last_name }}</td>
+        <td>{{ tenant.dni }}</td>
+        <td>{{ tenant.phone }}</td>
+        <td>{{ tenant.email }}</td>
+        <td>{{ tenant.start_date }}</td>
+        <td>{{ tenant.end_date }}</td>
+        <td>{{ tenant.espacio_numero }}</td>
+        <td>{{ tenant.id_propiedad }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-warning btn-sm">Update</button>
+            <button type="button" class="btn btn-danger btn-sm" @click="handleDeleteTenant(tenant)">Delete</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="printTenant(tenant)">Print</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
         <nav>
           <ul class="pagination justify-content-center">
             <li class="page-item" :class="{ 'disabled': currentPage === 1 }">

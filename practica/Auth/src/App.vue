@@ -2,8 +2,25 @@
 import { RouterLink, RouterView } from 'vue-router';
 import { onMounted } from 'vue';
 
+import { ref } from 'vue';
 
+const isAnimated = ref(false);
 
+const startAnimation = () => {
+  isAnimated.value = true;
+};
+
+const resetAnimation = () => {
+  isAnimated.value = false;
+};
+
+const titleStyles = (text) => {
+  return {
+    fontWeight: 'bold',
+    animation: isAnimated.value ? 'blink 2s infinite' : 'none',
+    opacity: text === 'Wasi' ? 1 : 0.8,
+  };
+};
 onMounted(() => {
   const datatablesSimple = document.getElementById('datatablesSimple');
   if (datatablesSimple) {
@@ -29,7 +46,13 @@ onMounted(() => {
   <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="/">Wasi Qampaq</a>
+            <a class="navbar-brand ps-3" href="" @mouseover="startAnimation" @mouseleave="resetAnimation">
+    <span class="title">
+      <span :style="titleStyles('Wasi')">Wasi</span> 
+      <span class="separator"></span>
+      <span :style="titleStyles('Qampaq')">Qampaq</span>
+    </span>
+  </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-list"></i></button>
 
@@ -37,7 +60,7 @@ onMounted(() => {
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
@@ -64,23 +87,23 @@ onMounted(() => {
                             </a>-->
                             <a class="nav-link" href="/">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                              Tenants
+                              <i class="bi bi-person me-2"></i>  Tenants(components)
                             </a>
                             <a class="nav-link" href="/login">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                              Decoracion
+                             <i class="bi bi-person-gear me-2"></i>HomeView
                             </a>
                             <a class="nav-link" href="/register">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                              grafico
+                            <i class="bi bi-building me-2"></i>Register (Practicar diseño)
                             </a>
                             <a class="nav-link" href="/tenants">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                            Tenants2
+                            <i class="bi bi-buildings me-2"></i>Apartments
                             </a>
                             <a class="nav-link" href="/tabla">
                             <div class="sb-nav-link-icon"><i class=""></i></div>
-                            Tabla de Practica
+                            <i class="bi bi-currency-dollar me-2"></i>Payments
                             </a>
 
                             <a class="nav-link" href="/boton">
@@ -90,10 +113,7 @@ onMounted(() => {
 
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
+                    
                 </nav>
           
             </div>
@@ -117,14 +137,14 @@ onMounted(() => {
                     </div>
 
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                <footer class="py-4 bg-light  mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2023</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#"></a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#"><i class="bi bi-book icono-terminos h6 m-2"></i>Terms &amp; Conditions</a>
                             </div>
                         </div>
                     </div>
@@ -134,6 +154,7 @@ onMounted(() => {
       </body>
 </template>
 <style>
+
 @charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
@@ -146,6 +167,34 @@ onMounted(() => {
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ .navbar-brand {
+  font-family: "Arial", sans-serif;
+  font-size: 1.5rem;
+  color: #ff5a5f;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.title {
+  font-weight: bold;
+  animation: blink 2s infinite;
+}
+.separator {
+  display: inline-block;
+  width: 0.5rem;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
